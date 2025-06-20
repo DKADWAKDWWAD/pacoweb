@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Paco Generator</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #0f0;
+      font-family: monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #text {
+      font-size: 2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #0f0;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: #0f0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="text"></div>
+
+  <script>
+    const sentence = "paco is an automatic voltage generator";
+    const textElement = document.getElementById("text");
+    let index = 0;
+
+    function type() {
+      if (index <= sentence.length) {
+        textElement.textContent = sentence.slice(0, index);
+        index++;
+        setTimeout(type, 100);
+      } else {
+        setTimeout(() => {
+          index = 0;
+          textElement.textContent = "";
+          type();
+        }, 2000);
+      }
+    }
+
+    type();
+  </script>
+</body>
+</html>
